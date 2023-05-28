@@ -38,9 +38,9 @@ function App() {
     }
    // <button onClick = {addNames}> Names </button> 
 
-   //const deleteHandler =(id) => {
-    //console.log("We want to delete", idToDelete);
-  // }
+  const deleteHandler =(id) => {
+  console.log("We want to delete", id);
+  }
 
   return (
     <div className="App">
@@ -56,7 +56,16 @@ function App() {
 
         <ul>
           {names.map(({id, name}) => {     //Destructuring
-            return <li key={id}>{name} </li>
+            return <li key={id}>
+            <p>{name}
+            <button onClick={() =>{
+               // console.log("we want to delete something");
+                deleteHandler(id);
+              }}>
+             
+             Remove
+              
+            </button></p> </li>
           })}
         </ul>
       
