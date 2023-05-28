@@ -3,7 +3,7 @@ import './App.css';
 
 //this is ES module syntax
 import {useState} from "react";
-import {nanoid} from "react";
+import {nanoid} from "nanoid";
 
 function App() {
   const [isTurnedOn, setIsTurnedOn] = useState(false); //can be isToggledOn
