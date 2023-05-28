@@ -38,9 +38,9 @@ function App() {
     }
    // <button onClick = {addNames}> Names </button> 
 
-   const deleteHandler =(id) => {
-    console.log("We want to delete", idToDelete);
-   }
+   //const deleteHandler =(id) => {
+    //console.log("We want to delete", idToDelete);
+  // }
 
   return (
     <div className="App">
@@ -53,13 +53,19 @@ function App() {
         <p>{count}</p>
         <button onClick = {increaseCount}> + </button>
         <button onClick = {decreaseCount}> - </button>
-      
 
         <ul>
-          {names.map((name,index) => {
-            return <li key={index}>{name} </li>
+          {names.map(({id, name}) => {     //Destructuring
+            return <li key={id}>{name} </li>
           })}
         </ul>
+      
+
+      {/*  <ul>
+          {names.map((nameObject) => {
+            return <li key={nameObject.id}>{nameObject.name} </li>
+          })}
+        </ul> */}
 
         <button onClick = {addNames} >Add  Names </button> 
 
