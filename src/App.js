@@ -10,7 +10,7 @@ function App() {
 
   const[count, setCount] =useState(0);
 
-  const[names, setNames] =useState([name:"Shaun" , id=""]);
+  const[names, setNames] =useState([{name:"Shaun" , id: nanoid() }]);
 
   //this is the bad way to do it
   //let isTurnedOn=true;
@@ -34,7 +34,7 @@ function App() {
 
     const addNames =() => {  
     const newName ="Shaun";
-    setNames([...names,  newName]);
+    setNames([...names,  {name:newName, id:nanoid()}]);
     }
    // <button onClick = {addNames}> Names </button> 
 
@@ -56,12 +56,12 @@ function App() {
       
 
         <ul>
-          {names.map((name) => {
+          {names.map((name,index) => {
             return <li key={index}>{name} </li>
           })}
         </ul>
 
-        <button onClick = {addNames}>Add  Names </button> 
+        <button onClick = {addNames} >Add  Names </button> 
 
 
         <a
