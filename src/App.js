@@ -5,12 +5,23 @@ import './App.css';
 import {useState} from "react";
 import {nanoid} from "nanoid";
 
+
+
 function App() {
   const [isTurnedOn, setIsTurnedOn] = useState(false); //can be isToggledOn
 
   const[count, setCount] =useState(0);
 
   const[names, setNames] =useState([{name:"Shaun" , id: nanoid() }]);
+
+  const [possibleNames,setPossibleNames] = useState([
+    "Olga", 
+    "Wiebke", 
+    "Lena", 
+    "Mauri", 
+    "Yo Jia",
+    "Shaun"
+  ]); 
 
   //this is the bad way to do it
   //let isTurnedOn=true;
@@ -33,13 +44,35 @@ function App() {
   };
 
     const addNames =() => {  
-    const newName ="Shaun";
+      if(possibleNames.length === 0) {
+        console.log("No more names to add");
+        return;
+      }
+    const newNameIndex =Math.floor(Math.random() * possibleNames.length);
+    const newName = possibleNames[newNameIndex];
+    
+
+    const possibleNamesCopy=[...possibleNames];
+    possibleNamesCopy.splice(newNameIndex, 1);
+    console.log(possibleNamesCopy);
+    setPossibleNames(possibleNamesCopy)
+
     setNames([...names,  {name:newName, id:nanoid()}]);
     }
    // <button onClick = {addNames}> Names </button> 
 
-  const deleteHandler =(id) => {
-  console.log("We want to delete", id);
+  const deleteHandler =(idToDelete) => {
+  console.log("We want to delete", idToDelete);
+  setNames(names.filter(({id})=> id !== idToDelete));
+
+  //setNames(names.filter((e)=> e.id !== idToDelete));
+  //setNames(names.filter((name)=> name.id !== idToDelete));
+  //setNames(names.filter((pizza))=> pizza.id !== idToDelete));
+
+  /*const byId =(pizza) =>pizza.id !==midToDelete;
+  setNames(names.filter(byId));
+*/
+
   }
 
   return (
